@@ -26,17 +26,51 @@ divisors?
 
 """
 
-def num_divisors(n):
-    count = 0
-    for d in range(1, int(n ** 0.5) + 1):
-        if n % d == 0:
-            count += 1
-    return count
+from collections import Counter
 
+_is_prime = [False, False, True, True]
+
+def is_prime(n):
+    global _is_prime
+    np = len(_is_prime)
+    if n >= np:
+        _is_prime += [True for i in range(n - np + 1)]
+        for i in range(len(_is_prime)):
+            if _is_prime[i]:
+                for j in range(2 * i, len(_is_prime), i):
+                    _is_prime[j] = False
+    return _is_prime[n]
+
+def prime_factorization(n):
+    global _is_prime
+    if is_prime(n):
+        return Counter({n: 1})
+    c = Counter()
+    for p, d in enumerate(_is_prime[:n//2]):
+        if not d:
+            continue
+        m, r = divmod(n, p)
+        while r == 0:
+            c[p] += 1
+            m, r = divmod(m, p)
+    return c
+
+def num_divisors(n):
+    factors = prime_factorization(n)
+    product = 1
+    for p, e in factors.items():
+        product *= e + 1
+    return product
+    
 def answer():
-    n = 1000
-    while num_divisors(n) < 500:
+    s = 0
+    n = 0
+    nd = 0
+    while nd <= 500:
         n += 1
+        s += n
+        print('{} has {}'.format(s, nd))
+        nd = num_divisors(s)
     return n
         
 
