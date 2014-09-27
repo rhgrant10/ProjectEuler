@@ -46,7 +46,7 @@ def prime_factorization(n):
     if is_prime(n):
         return Counter({n: 1})
     c = Counter()
-    for p, d in enumerate(_is_prime[:n//2]):
+    for p, d in enumerate(_is_prime[:n//2 + 1]):
         if not d:
             continue
         m, r = divmod(n, p)
@@ -61,17 +61,23 @@ def num_divisors(n):
     for p, e in factors.items():
         product *= e + 1
     return product
-    
+
+import time
+
 def answer():
+    t = time.time()
     s = 0
     n = 0
     nd = 0
+    mnd = 0
     while nd <= 500:
         n += 1
         s += n
-        print('{} has {}'.format(s, nd))
         nd = num_divisors(s)
-    return n
+        if nd >= mnd:
+            print('[{:12f}] {} has {}'.format(time.time() - t, s, nd))
+            mnd = nd
+    return s
         
 
 if __name__ == '__main__':
