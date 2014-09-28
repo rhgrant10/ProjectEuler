@@ -17,10 +17,12 @@ How many such routes are there through a 20×20 grid?
 
 """
 
-SIZE = 2
+from math import factorial as fact
+
+SIZE = 20
 
 def answer():
-	return ((SIZE / 2) ** 2 - 1) * 2
+	return fact(2 * SIZE) // (fact(SIZE) ** 2)
 
 if __name__ == '__main__':
 	print(answer())
