@@ -26,29 +26,27 @@ divisors?
 
 """
 
+import time
 from collections import Counter
 
-_is_prime = [False, False, True, True]
+def gen_primes(limit):
+    is_prime = [True for _ in range(limit)]
+    is_prime[:2] = [False, False]
+    for i in range(2, limit):
+        if is_prime[i]:
+            for j in range(i + i, limit, i):
+                is_prime[j] = False
+    return [p for p, e in enumerate(is_prime) if e]
 
-def is_prime(n):
-    global _is_prime
-    np = len(_is_prime)
-    if n >= np:
-        _is_prime += [True for i in range(n - np + 1)]
-        for i in range(len(_is_prime)):
-            if _is_prime[i]:
-                for j in range(2 * i, len(_is_prime), i):
-                    _is_prime[j] = False
-    return _is_prime[n]
+primes = gen_primes(100000)
 
 def prime_factorization(n):
-    global _is_prime
-    if is_prime(n):
+    if n % 2 == 0:  # Ignore one factor of 2.
+        n /= 2
+    if n in primes:
         return Counter({n: 1})
     c = Counter()
-    for p, d in enumerate(_is_prime[:n//2 + 1]):
-        if not d:
-            continue
+    for p in primes[:int(n // 2) + 1]:
         m, r = divmod(n, p)
         while r == 0:
             c[p] += 1
@@ -56,29 +54,18 @@ def prime_factorization(n):
     return c
 
 def num_divisors(n):
-    factors = prime_factorization(n)
     product = 1
-    for p, e in factors.items():
+    for p, e in prime_factorization(n).items():
         product *= e + 1
     return product
 
-import time
-
 def answer():
-    t = time.time()
-    s = 0
-    n = 0
-    nd = 0
-    mnd = 0
-    while nd <= 500:
+    n = 1
+    left, right = map(num_divisors, [n, n + 1])
+    while left * right < 500:   # Is missing one factor of 2, thus < not <=
         n += 1
-        s += n
-        nd = num_divisors(s)
-        if nd >= mnd:
-            print('[{:12f}] {} has {}'.format(time.time() - t, s, nd))
-            mnd = nd
-    return s
-        
+        left, right = right, num_divisors(n + 1)
+    return n * (n + 1) // 2     # Return actual triangle number.
 
 if __name__ == '__main__':
     print(answer())
