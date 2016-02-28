@@ -17,7 +17,7 @@ What is the total of all the name scores in the file?
 
 """
 
-INPUT_FILE = 'p022_names.txt'
+INPUT_FILE = './data/problem022.data'
 
 
 def alphabetical_value(letter):
