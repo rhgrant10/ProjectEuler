@@ -14,8 +14,8 @@ EXPONENT = 1000
 
 
 def answer():
-	return sum(map(int, str(BASE ** EXPONENT)))
-	
+    return sum(map(int, str(BASE ** EXPONENT)))
+
+
 if __name__ == '__main__':
-	print(answer())
-	
+    print(answer())

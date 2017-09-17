@@ -54,6 +54,7 @@ TENS = {
     9: 'ninety'
 }
 
+
 def text(number):
     words = []
     thousands, hundreds, tens, ones = map(int, "{:04}".format(number))
@@ -71,7 +72,8 @@ def text(number):
         if ones:
             words.append(ONES[ones])
     return " ".join(words)
-    
+
+
 def answer():
     letter_count = 0
     for n in range(1, 1001):

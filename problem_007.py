@@ -9,7 +9,6 @@ the 6th prime is 13.
 What is the 10001st prime number?
 
 """
-import math
 
 
 def is_prime(n):
@@ -18,22 +17,25 @@ def is_prime(n):
             return False
     return True
 
+
 def next_prime(after):
     after += 2 if after % 2 else 1
     while not is_prime(after):
         after += 2
     return after
-    
+
+
 def first_primes(count):
     n = 1
     x = 2
     for n in range(count, 0, -1):
-        x = next_prime(x)   
+        x = next_prime(x)
     return x
-    
+
+
 def answer():
     return first_primes(10001)
-    
+
 
 if __name__ == '__main__':
     print(answer())

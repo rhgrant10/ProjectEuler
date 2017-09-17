@@ -15,6 +15,7 @@ Evaluate the sum of all the amicable numbers under 10000
 
 """
 
+
 def divisors(n, memo={}):
     if n in memo:
         yield from memo[n]
@@ -28,6 +29,7 @@ def divisors(n, memo={}):
                 yield i
                 yield d
 
+
 def answer():
     amicables = set()
     for a in range(1, 10000):
@@ -35,6 +37,7 @@ def answer():
         if a != b and sum(divisors(b)) == a:
             amicables.update([a, b])
     return sum(amicables)
+
 
 if __name__ == '__main__':
     print(answer())

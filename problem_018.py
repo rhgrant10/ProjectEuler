@@ -48,6 +48,7 @@ The i-th item on row r has children at i and i + 1 on row r + 1
 
 """
 
+
 TRIANGLE = [
     [75],
     [95, 64],
@@ -66,6 +67,7 @@ TRIANGLE = [
     [ 4, 62, 98, 27, 23,  9, 70, 98, 73, 93, 38, 53, 60,  4, 23]
 ]
 
+
 def triangle_sums(triangle):
     for r in range(1, len(triangle)):
         # Do first and last columns (they only have one parent)
@@ -75,10 +77,12 @@ def triangle_sums(triangle):
         for c in range(1, len(triangle[r]) - 1):
             triangle[r][c] += max(triangle[r - 1][c - 1:c + 1])
     return triangle
-    
+
+
 def answer():
     return max(triangle_sums(TRIANGLE)[-1])
 
+
 if __name__ == '__main__':
     print(answer())
-    
+

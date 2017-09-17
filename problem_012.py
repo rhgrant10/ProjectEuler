@@ -25,9 +25,8 @@ What is the value of the first triangle number to have over five hundred
 divisors?
 
 """
-
-import time
 from collections import Counter
+
 
 def gen_primes(limit):
     is_prime = [True for _ in range(limit)]
@@ -38,7 +37,9 @@ def gen_primes(limit):
                 is_prime[j] = False
     return [p for p, e in enumerate(is_prime) if e]
 
+
 primes = gen_primes(100000)
+
 
 def prime_factorization(n):
     if n % 2 == 0:  # Ignore one factor of 2.
@@ -53,11 +54,13 @@ def prime_factorization(n):
             m, r = divmod(m, p)
     return c
 
+
 def num_divisors(n):
     product = 1
     for p, e in prime_factorization(n).items():
         product *= e + 1
     return product
+
 
 def answer():
     n = 1
@@ -66,6 +69,7 @@ def answer():
         n += 1
         left, right = right, num_divisors(n + 1)
     return n * (n + 1) // 2     # Return actual triangle number.
+
 
 if __name__ == '__main__':
     print(answer())

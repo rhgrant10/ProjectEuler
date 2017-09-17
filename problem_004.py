@@ -15,10 +15,12 @@ def is_palindrome(n):
     n = str(n)
     return n == "".join(reversed(n))
 
+
 def palindromes(start):
     for n in range(start, 100 * 100 - 1, -1):
         if is_palindrome(n):
             yield n
+
 
 def answer():
     for p in palindromes(999 * 999):
@@ -26,7 +28,8 @@ def answer():
             div, m = divmod(p, d)
             if len(str(div)) == 3 and m == 0:
                 return p
-    return None   
+    return None
+
 
 if __name__ == '__main__':
     print(answer())

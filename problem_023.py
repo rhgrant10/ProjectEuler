@@ -25,10 +25,12 @@ two abundant numbers.
 
 LIMIT = 28123
 
+
 def abundant_numbers(limit):
     for n in range(1, limit + 1):
         if sum(proper_divisors(n)) > n:
             yield n
+
 
 def proper_divisors(n):
     if n < 2:
@@ -41,17 +43,13 @@ def proper_divisors(n):
             if d != i:
                 yield d
 
+
 def is_sum_of_two_abundants(n, abundants):
-    # print("Testing {}".format(n))
     for a in [x for x in abundants if x < n]:
-        # print(" {} - {} in abundants?".format(n, a), end=' ')
         if (n - a) in abundants:
-            # print("yes - > {} + {} = {}".format(n - a, a, n))
-            # print("TRUE")
             return True
-        # print("no".format(n - a, a, n))
-    # print("FALSE")
     return False
+
 
 def answer():
     total = 0
@@ -60,6 +58,7 @@ def answer():
         if not is_sum_of_two_abundants(n, abundants):
             total += n
     return total
+
 
 if __name__ == '__main__':
     print(answer())

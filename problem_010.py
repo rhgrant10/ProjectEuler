@@ -9,6 +9,7 @@ Find the sum of all the primes below two million.
 
 """
 
+
 def primes(limit):
     seive = [True for i in range(limit)]
     seive[:2] = [False, False]
@@ -18,8 +19,10 @@ def primes(limit):
                 seive[x] = False
     return (i for i, x in enumerate(seive) if x)
 
+
 def answer():
     return sum(primes(2000000))
+
 
 if __name__ == '__main__':
     print(answer())

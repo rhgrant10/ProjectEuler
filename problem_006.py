@@ -18,17 +18,20 @@ Find the difference between the sum of the squares of the first one hundred
 natural numbers and the square of the sum.
 
 """
-
 N = 100
+
 
 def sum_of_squares(n):
     return sum(x ** 2 for x in n)
 
+
 def square_of_sum(n):
     return sum(n) ** 2
 
+
 def answer():
     return square_of_sum(range(N + 1)) - sum_of_squares(range(N + 1))
+
 
 if __name__ == '__main__':
     print(answer())

@@ -20,8 +20,8 @@ How many Sundays fell on the first of the month during the twentieth century
 (1 Jan 1901 to 31 Dec 2000)?
 
 """
-
 from datetime import date
+
 
 def answer():
     sundays_on_first = 0
@@ -31,6 +31,7 @@ def answer():
             if d.weekday() == 6:
                 sundays_on_first += 1
     return sundays_on_first
+
 
 if __name__ == '__main__':
     print(answer())

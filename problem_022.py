@@ -23,8 +23,10 @@ INPUT_FILE = 'p022_names.txt'
 def alphabetical_value(letter):
     return ord(letter) - ord('A') + 1
 
+
 def name_score(name, position):
     return sum(map(alphabetical_value, name)) * position
+
 
 def read_names(filepath):
     with open(filepath, 'r') as f:
@@ -32,12 +34,14 @@ def read_names(filepath):
         for n in names:
             yield n.replace('"', '')
 
+
 def answer():
     names = sorted(read_names(INPUT_FILE))
     total = 0
     for i, name in enumerate(names, 1):
         total += name_score(name, i)
     return total
+
 
 if __name__ == '__main__':
     print(answer())

@@ -14,7 +14,7 @@ What is the millionth lexicographic permutation of the digits
 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
 
 
-    
+
      0 0123
      1 0132
     ----
@@ -23,7 +23,7 @@ What is the millionth lexicographic permutation of the digits
     ----
      4 0312
      5 0321
-    
+
      6 1023
      7 1032
     ----
@@ -32,7 +32,7 @@ What is the millionth lexicographic permutation of the digits
     ----
     10 1302
     11 1320
-    
+
     12 2013
     13 2031
     ----
@@ -41,7 +41,7 @@ What is the millionth lexicographic permutation of the digits
     ----
     16 2301
     17 2310
-    
+
     18 3012
 --> 19 3021
     ----
@@ -107,6 +107,6 @@ def answer():
         index -= d * i
         item += str(digits.pop(d))
     return item
-        
+
 if __name__ == '__main__':
     print(answer())
