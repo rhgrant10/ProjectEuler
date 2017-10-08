@@ -23,7 +23,7 @@ cycle in its decimal fraction part.
 """
 
 
-def divide(d):
+def cycle_length(d):
     seen = {}
     n = 10
     while n < d:
@@ -38,3 +38,11 @@ def divide(d):
         q = n // d
         s = q * d
         n = 10 * (n - s)
+
+
+def answer():
+    return max((cycle_length(d), d) for d in range(1, 1001))[1]
+
+
+if __name__ == '__main__':
+    print(answer())
