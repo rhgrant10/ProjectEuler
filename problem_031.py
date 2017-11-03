@@ -86,6 +86,17 @@ def get_counts(coins, goal):
                 break
 
 
+def get_answer(coins, goal):
+    dp = [1] + [0] * goal
+    for coin in coins:
+        for i in range(goal - coin + 1):
+            dp[i + coin] += dp[i]
+    return dp[-1]
+
+
+print(get_answer([1, 2, 5, 10, 20, 50, 100, 200], 200))
+
+
 def answer(goal=200):
     english = (1, 2, 5, 10, 20, 50, 100, 200)
     return count_ways(goal=goal, coins=english)
